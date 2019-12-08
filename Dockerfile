@@ -31,7 +31,7 @@ COPY / /workdir/
 
 RUN pip3 install -U pip
 
-RUN pip3 install -r rasa/requirements.txt --extra-index-url https://pypi.rasa.com/simple
+RUN pip3 install -r requirements.txt --extra-index-url https://pypi.rasa.com/simple
 
 RUN chgrp -R 0 . && chmod -R g=u .
 
