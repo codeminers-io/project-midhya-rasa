@@ -5,5 +5,5 @@ run:
   web: npm start
   worker:
     command:
-      - chmod +777 /usr/lib/python3/dist-packages/ --recursive && rasa run -m ~/rasa/models/ --enable-api --log-file ~/rasa/out.log -p 5005 --cors "*"
+      - chmod +777 /usr/lib/python3/dist-packages/ --recursive && rasa run -m models/ --enable-api --log-file out.log -p 5005 --cors "*"
     image: web      
