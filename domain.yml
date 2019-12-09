@@ -6,6 +6,13 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - bot_location
+  - bot_age
+  - bot_asl
+  - bot_langugae
+  - bot_help
+  - bot_state
+  - bot_hobby
 
 actions:
 - utter_greet
@@ -14,6 +21,13 @@ actions:
 - utter_happy
 - utter_goodbye
 - utter_iamabot
+- utter_location
+- utter_age
+- utter_asl
+- utter_language
+- utter_help
+- utter_state
+- utter_hobby
 
 templates:
   utter_greet:
@@ -33,4 +47,25 @@ templates:
   - text: "Bye"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  - text: "I am Midhya, Government of India Grievance chat assistant."
+
+  utter_location:
+  - text: "I am born in India and staying there."
+
+  utter_age:
+  - text: "I am still young just launched in 2019."
+
+  utter_asl:
+  - text: "I am proud to say an Indian and my services are launched in 2019. Honestly I don't know my gender."
+
+  utter_language:
+  - text: "I know India has different cultures and languages but now, I only understand English."
+
+  utter_help:
+  - text: "I am still under development, hope you can see some list soon."
+  
+  utter_state:
+  - text: "I am good. Thank you."
+
+  bot_hobby:
+  - text: "I am here to assist you and thats my hobby."
