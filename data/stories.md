@@ -29,3 +29,31 @@
 ## bot challenge
 * bot_challenge
   - utter_iamabot
+
+## bot location
+* bot_location
+  - utter_location
+
+## bot age
+* bot_location
+  - utter_age
+
+## bot asl
+* bot_asl
+  - utter_asl
+
+## bot language
+* bot_language
+  - utter_language
+
+## bot help
+* bot_help
+  - utter_help
+
+## bot state
+* bot_state
+  - utter_state
+
+## bot hobby
+* bot_hobby
+  - utter_hobby
