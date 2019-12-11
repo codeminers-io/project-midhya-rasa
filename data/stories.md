@@ -57,3 +57,7 @@
 ## bot hobby
 * bot_hobby
   - utter_hobby
+  
+## list departments
+* list_departments
+  - action_list_departments
