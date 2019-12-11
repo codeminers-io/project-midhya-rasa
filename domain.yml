@@ -9,10 +9,11 @@ intents:
   - bot_location
   - bot_age
   - bot_asl
-  - bot_langugae
+  - bot_language
   - bot_help
   - bot_state
   - bot_hobby
+  - list_departments
 
 actions:
 - utter_greet
@@ -28,6 +29,13 @@ actions:
 - utter_help
 - utter_state
 - utter_hobby
+- utter_ask_organization_for_level
+- utter_ask_parent_organization_for_level
+- utter_organization_not_found
+- utter_ask_organization_for_address
+- utter_organization_complaints_not_found
+- utter_complaint_not_found
+- action_list_departments
 
 templates:
   utter_greet:
@@ -67,5 +75,23 @@ templates:
   utter_state:
   - text: "I am good. Thank you."
 
-  bot_hobby:
+  utter_hobby:
   - text: "I am here to assist you and thats my hobby."
+
+  utter_ask_organization_for_level:
+  - text: "Can you tell me the organization name then I can find out the parent orginization for you."
+
+  utter_ask_parent_organization_for_level:
+  - text: "Can you tell me the parent organization name then I can find out the child orginizations for you."
+
+  utter_organization_not_found:
+  - text: "Sorry, I don't have any details about the orginization."
+
+  utter_ask_organization_for_address:
+  - text: "Can you tell me the organization name then I can find out the address/contacts for you."
+
+  utter_organization_complaints_not_found:
+  - text: "Sorry, I don't have any complaints details about the orginization."
+
+  utter_complaint_not_found:
+  - text: "Sorry, Complaint details not found."
