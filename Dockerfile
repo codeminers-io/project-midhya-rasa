@@ -17,6 +17,7 @@ RUN apt-get update -y && \
         dumb-init \
         nvidia-modprobe \
         libpq-dev \
+	python-psycopg2 \
 	nodejs \
 	npm \
 	&& apt-get clean \
