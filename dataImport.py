@@ -14,7 +14,7 @@ def doQuery(conn, query) :
 import psycopg2
 import csv
 
-with open('/workdir/dataset/4.csv') as csv_file:
+with open('/workdir/dataset/4.csv', encoding='utf-8') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
     for row in csv_reader:
@@ -28,7 +28,7 @@ with open('/workdir/dataset/4.csv') as csv_file:
     
     print(f'Processed {line_count} lines.')
     
-with open('/workdir/dataset/3.csv') as csv_file:
+with open('/workdir/dataset/3.csv', encoding='utf-8') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
     for row in csv_reader:
@@ -42,7 +42,7 @@ with open('/workdir/dataset/3.csv') as csv_file:
     
     print(f'Processed {line_count} lines.')
     
-with open('/workdir/dataset/NodalOfficer_Details.csv') as csv_file:
+with open('/workdir/dataset/NodalOfficer_Details.csv', encoding='utf-8') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
     for row in csv_reader:
