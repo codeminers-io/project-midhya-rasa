@@ -36,7 +36,7 @@ RUN pip3 install -r requirements.txt --extra-index-url https://pypi.rasa.com/sim
 
 RUN chgrp -R 0 . && chmod -R g=u .
 
-RUN chmod a+rwx models/20191209-152402.tar.gz
+RUN chmod a+rwx models/20191211-172733.tar.gz
 
 RUN chmod +777 /usr/lib/python3/dist-packages/ --recursive
 
