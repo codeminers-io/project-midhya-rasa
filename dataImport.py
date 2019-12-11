@@ -20,7 +20,7 @@ with open('/workdir/dataset/4.csv', encoding='utf-8') as csv_file:
     for row in csv_reader:
         if line_count < 4000:
             myConnection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
-            doQuery(myConnection, 'INSERT INTO \"receipts\" (ministry_department_state varchar,total_receipts integer,total_disposal integer, total_pending integer,pending_more_than_1_year integer,pending_between_6_to_12_months integer,pending_between_2_to_6_months integer,pending_less_than_2_months integer) VALUES (\'' + row[0] + '\',\'' + row[1] + '\', \'' + row[2] + '\', \'' + row[3] + '\', \'' + row[4] + '\', \'' + row[5] + '\', \'' + row[6] + '\', \'' + row[7] + '\');')
+            doQuery(myConnection, 'INSERT INTO \"receipts\" (ministry_department_state,total_receipts,total_disposal, total_pending,pending_more_than_1_year,pending_between_6_to_12_months,pending_between_2_to_6_months,pending_less_than_2_months) VALUES (\'' + row[0] + '\',\'' + row[1] + '\', \'' + row[2] + '\', \'' + row[3] + '\', \'' + row[4] + '\', \'' + row[5] + '\', \'' + row[6] + '\', \'' + row[7] + '\');')
             myConnection.close()
             print(f'Processing {line_count}')
             
