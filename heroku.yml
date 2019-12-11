@@ -2,8 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: chmod +777 /usr/lib/python3/dist-packages/ --recursive && rasa run -m models/ --enable-api --log-file out.log -p $PORT --cors "*" --endpoints endpoints.yml
-  worker:
-    command:
-        - chmod +777 /usr/lib/python3/dist-packages/ --recursive && rasa run actions
-    image: web
+  web: chmod +777 /usr/lib/python3/dist-packages/ --recursive && rasa run -m models/ --enable-api --log-file out.log -p $PORT --cors "*" --endpoints endpoints.yml & rasa run actions
