@@ -14,6 +14,8 @@ intents:
   - bot_state
   - bot_hobby
   - list_departments
+  - bot_date
+  - bot_time
 
 actions:
 - utter_greet
@@ -36,6 +38,8 @@ actions:
 - utter_organization_complaints_not_found
 - utter_complaint_not_found
 - action_list_departments
+- action_bot_date
+- action_bot_time
 
 templates:
   utter_greet:
