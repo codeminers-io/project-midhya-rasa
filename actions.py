@@ -40,12 +40,10 @@ class ActionListDepartments(Action):
         cur.close()
         con.close()
 
-        resultString = '<ol>'
+        resultString = '\n\n'
 
         for result in results:
-            resultString = resultString + '<li>' + result[0] + '</li>'
-            
-        resultString = resultString + '</ol>'
+            resultString = resultString  + result[0] + '\n'
 
         dispatcher.utter_message(template="utter_list_departments", departments=resultString)
 
