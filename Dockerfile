@@ -34,10 +34,4 @@ RUN pip3 install -U pip
 
 RUN pip3 install -r requirements.txt --extra-index-url https://pypi.rasa.com/simple
 
-RUN chgrp -R 0 . && chmod -R g=u .
-
-RUN chmod a+rwx models/20191212-093952.tar.gz
-
-RUN chmod +777 /usr/lib/python3/dist-packages/ --recursive
-
 EXPOSE 5005
