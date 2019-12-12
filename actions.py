@@ -16,6 +16,8 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import psycopg2
+from datetime import datetime
+from dateutil import tz
 
 class ActionListDepartments(Action):
     def name(self) -> Text:
@@ -38,5 +40,47 @@ class ActionListDepartments(Action):
             resultString = resultString + '</ br>' + result[0]
 
         dispatcher.utter_message(resultString)
+
+        return []
+
+class ActionBotDate(Action):
+    def name(self) -> Text:
+        return "action_bot_date"
+        
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        from_zone = tz.gettz('UTC')
+        to_zone = tz.gettz('Asia/Kolkata')
+
+        utc = datetime.utcnow()
+
+        utc = utc.replace(tzinfo=from_zone)
+
+        indiaDate = utc.astimezone(to_zone).strftime("%B %d, %Y")
+
+        dispatcher.utter_message('Current date in India is ' + indiaDate)
+
+        return []
+
+class ActionBotTime(Action):
+    def name(self) -> Text:
+        return "action_bot_time"
+        
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        from_zone = tz.gettz('UTC')
+        to_zone = tz.gettz('Asia/Kolkata')
+
+        utc = datetime.utcnow()
+
+        utc = utc.replace(tzinfo=from_zone)
+
+        indiaTime = utc.astimezone(to_zone).strftime("%B %d, %Y %H:%M:%S %p")
+
+        dispatcher.utter_message('Current time in India is ' + indiaTime)
 
         return []
