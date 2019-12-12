@@ -66,6 +66,8 @@
 - name?
 - what do you look like?
 - tell me about yourself
+- are you man
+- are you girl
 
 ## intent:bot_location
 - where do you live?
