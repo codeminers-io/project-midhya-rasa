@@ -35,7 +35,7 @@
   - utter_location
 
 ## bot age
-* bot_location
+* bot_age
   - utter_age
 
 ## bot asl
@@ -57,6 +57,14 @@
 ## bot hobby
 * bot_hobby
   - utter_hobby
+
+## bot date
+* bot_date
+  - action_bot_date
+
+## bot time
+* bot_time
+  - action_bot_time
   
 ## list departments
 * list_departments
