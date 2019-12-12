@@ -19,8 +19,6 @@ intents:
 
 actions:
 - utter_greet
-- utter_cheer_up
-- utter_did_that_help
 - utter_happy
 - utter_goodbye
 - utter_iamabot
@@ -44,40 +42,46 @@ actions:
 templates:
   utter_greet:
   - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
+  - text: "Hi. What are you looking for?"
+  - text: "Hello! How can I help you today?"
 
   utter_happy:
-  - text: "Great, carry on!"
+  - text: "Great!"
 
   utter_goodbye:
   - text: "Bye"
+  - text: "Talk to you later!"
+  - text: "Have a good day."
+  - text: "Until next time!"
 
   utter_iamabot:
   - text: "I am Midhya, Grievance chat assistant."
 
   utter_location:
   - text: "I am born in India and staying there."
+  - text: "I was born in India, but I consider myself a citizen of the world."
+  - text: "I was born in the coolest city on Earth"
 
   utter_age:
   - text: "I am still young just launched in 2019."
+  - text: "Old enough to be a bot"
+  - text: "Age is just an issue of mind over matter. If you don't mind, it doesn't matter."
 
   utter_asl:
   - text: "I am proud to say an Indian and my services are launched in 2019. Honestly I don't know my gender."
 
   utter_language:
   - text: "I know India has different cultures and languages but now, I only understand English."
+  - text: "I can spell baguette in French, but unfortunately English is the only language I can answer you in."
+  - text: "I am in the process of learning, but at the moment I can only speak English."
 
   utter_help:
   - text: "I am still under development, hope you can see some list soon."
   
   utter_state:
-  - text: "I am good. Thank you."
+  - text: "I'm good, thanks!"
+  - text: "I'm great! Thanks for asking."
+  - text: "A little bit too warm, otherwise fine."
 
   utter_hobby:
   - text: "I am here to assist you and thats my hobby."
@@ -101,7 +105,7 @@ templates:
   - text: "Sorry, Complaint details not found."
 
   utter_list_departments:
-  - text: "These are the top 5 departments under Government of India. {departments}"
+  - text: "Here is the list of few departments{departments}"
 
   utter_bot_date:
   - text: "Current date in India is {indiaDate}"
