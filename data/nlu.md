@@ -220,3 +220,14 @@
 - is my complaint resolved
 - who is looking into my complaint
 - who is working on my complaint
+
+## intent:bot_date
+- what is today's date
+- today
+- date of the day
+- date
+
+## intent:bot_time
+- what is time now
+- time
+- time now
