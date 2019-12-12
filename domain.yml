@@ -59,7 +59,7 @@ templates:
   - text: "Bye"
 
   utter_iamabot:
-  - text: "I am Midhya, Government of India Grievance chat assistant."
+  - text: "I am Midhya, Grievance chat assistant."
 
   utter_location:
   - text: "I am born in India and staying there."
@@ -99,3 +99,12 @@ templates:
 
   utter_complaint_not_found:
   - text: "Sorry, Complaint details not found."
+
+  utter_list_departments:
+  - text: "These are the top 5 departments under Government of India. {departments}"
+
+  utter_bot_date:
+  - text: "Current date in India is {indiaDate}"
+
+  utter_bot_time:
+  - text: "Current time in India is {indiaTime}"
