@@ -12,6 +12,11 @@ username = 'nhfpgoiwhzrekw'
 password = 'e2773b491671c7f91f561c94c665a98586fef404eef9e7884d48e5d43a11ac59'
 database = 'dcsjh104da15vj'
 
+#hostname = 'localhost'
+#username = 'postgres'
+#password = ''
+#database = 'postgres'
+
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -35,11 +40,14 @@ class ActionListDepartments(Action):
         cur.close()
         con.close()
 
-        resultString = 'These are the top 5 departments under Government of India.'
-        for result in results:
-            resultString = resultString + '</ br>' + result[0]
+        resultString = '<ol>'
 
-        dispatcher.utter_message(resultString)
+        for result in results:
+            resultString = resultString + '<li>' + result[0] + '</li>'
+            
+        resultString = resultString + '</ol>'
+
+        dispatcher.utter_message(template="utter_list_departments", departments=resultString)
 
         return []
 
@@ -58,9 +66,9 @@ class ActionBotDate(Action):
 
         utc = utc.replace(tzinfo=from_zone)
 
-        indiaDate = utc.astimezone(to_zone).strftime("%B %d, %Y")
+        date = utc.astimezone(to_zone).strftime("%b %d, %Y")
 
-        dispatcher.utter_message('Current date in India is ' + indiaDate)
+        dispatcher.utter_message(template="utter_bot_date", indiaDate=date)
 
         return []
 
@@ -79,8 +87,8 @@ class ActionBotTime(Action):
 
         utc = utc.replace(tzinfo=from_zone)
 
-        indiaTime = utc.astimezone(to_zone).strftime("%B %d, %Y %H:%M:%S %p")
+        time = utc.astimezone(to_zone).strftime("%b %d, %Y %H:%M:%S %p")
 
-        dispatcher.utter_message('Current time in India is ' + indiaTime)
+        dispatcher.utter_message(template="utter_bot_time", indiaTime=time)
 
         return []
