@@ -16,6 +16,11 @@ intents:
   - list_departments
   - bot_date
   - bot_time
+  - parent_organization
+  - child_organizations
+  - organization_address
+  - bot_likes
+  - user_info
 
 actions:
 - utter_greet
@@ -29,15 +34,32 @@ actions:
 - utter_help
 - utter_state
 - utter_hobby
-- utter_ask_organization_for_level
-- utter_ask_parent_organization_for_level
+- action_parent_organization
+- utter_about_organization
+- action_child_organizations
+- action_organization_address
+- utter_ask_organization
 - utter_organization_not_found
-- utter_ask_organization_for_address
-- utter_organization_complaints_not_found
-- utter_complaint_not_found
 - action_list_departments
 - action_bot_date
 - action_bot_time
+- utter_ok
+- utter_default
+- utter_bot_likes
+- utter_user_info
+
+entities:
+  - organization
+  - designation
+  - organization_code
+  - status
+
+slots:
+  organization:
+    type: text
+
+forms:
+  - organization_form
 
 templates:
   utter_greet:
@@ -55,7 +77,9 @@ templates:
   - text: "Until next time!"
 
   utter_iamabot:
-  - text: "I am Midhya, Grievance chat assistant."
+  - text: "I'm Midhya the chatbot, Grievance chat assistant."
+  - text: "It's me Midhya your grievance chat assistant."
+  - text: "I'm the virtual assistant for grievance, you can call me Midhya."
 
   utter_location:
   - text: "I am born in India and staying there."
@@ -85,30 +109,39 @@ templates:
 
   utter_hobby:
   - text: "I am here to assist you and thats my hobby."
+  - text: "oh, that's a stupid question."
 
-  utter_ask_organization_for_level:
-  - text: "Can you tell me the organization name then I can find out the parent orginization for you."
+  utter_about_organization:
+  - text: "Here is the details\n\n{organization_details}"
 
-  utter_ask_parent_organization_for_level:
-  - text: "Can you tell me the parent organization name then I can find out the child orginizations for you."
+  utter_ask_organization:
+  - text: "What is the organization name ?"
 
   utter_organization_not_found:
-  - text: "Sorry, I don't have any details about the orginization."
-
-  utter_ask_organization_for_address:
-  - text: "Can you tell me the organization name then I can find out the address/contacts for you."
-
-  utter_organization_complaints_not_found:
-  - text: "Sorry, I don't have any complaints details about the orginization."
-
-  utter_complaint_not_found:
-  - text: "Sorry, Complaint details not found."
+  - text: "Sorry, I don't have any details about the organization {organization}."
 
   utter_list_departments:
-  - text: "Here is the list of few departments{departments}"
+  - text: "Here is the list of few departments. Do you want to see more ?\n\n{departments}"
 
   utter_bot_date:
   - text: "Current date in India is {indiaDate}"
 
   utter_bot_time:
   - text: "Current time in India is {indiaTime}"
+
+  utter_ok:
+  - text: "Ok."
+  - text: "Okay"
+
+  utter_default:
+  - text: "Sorry I didn't understand you. Let's try something else!"
+
+  utter_bot_likes:
+  - text: "I think so."
+  - text: "Sometimes."
+  - text: "Not sure about it but I like Pani Puri."
+
+  utter_user_info:
+  - text: "Sorry, I don't have any answers for these type of questions."
+  - text: "Sorry, I'm not designed to answer these type of questions."
+  - text: "Sorry, It's something outside my interest, I don't have any answer for that."
