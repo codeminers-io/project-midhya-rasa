@@ -40,6 +40,10 @@
 * bot_hobby
   - utter_hobby
 
+## bot likes
+* bot_likes
+  - utter_bot_likes
+
 ## bot date
 * bot_date
   - action_bot_date
@@ -51,3 +55,36 @@
 ## list departments
 * list_departments
   - action_list_departments
+* affirm
+  - action_list_departments
+
+## list departments
+* list_departments
+  - action_list_departments
+* deny
+  - utter_ok
+
+## parent organization
+* parent_organization
+  - organization_form
+  - slot{"organization": "darpg"}
+  - form{"name": "organization_form"}
+  - form{"name": null}
+
+## child organization
+* child_organizations
+  - organization_form
+  - slot{"organization": "darpg"}
+  - form{"name": "organization_form"}
+  - form{"name": null}
+
+## about organization address
+* organization_address
+  - organization_form
+  - slot{"organization": "darpg"}
+  - form{"name": "organization_form"}
+  - form{"name": null}
+
+## user info
+* user_info
+  - utter_user_info
