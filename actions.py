@@ -110,7 +110,7 @@ class OrganizationForm(FormAction):
     def submit(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict]:
 
         intent = tracker.latest_message['intent'].get('name')
-        value = tracker.get_slot('organization')
+        value = tracker.get_slot('organization').lower()
 
         print(intent)
         print(value)

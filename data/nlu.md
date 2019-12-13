@@ -5,6 +5,10 @@
 - good morning
 - good evening
 - hey there
+- hey bot
+- hi friend
+- hi sir
+- hi madam
 
 ## intent:goodbye
 - bye
@@ -21,6 +25,11 @@
 - of course
 - that sounds good
 - correct
+- that's correct
+- yaah
+- ya
+- ok
+- okay
 
 ## intent:deny
 - no
@@ -29,6 +38,7 @@
 - don't like that
 - no way
 - not really
+- wrong
 
 ## intent:mood_great
 - perfect
@@ -126,6 +136,10 @@
 - who is chief minister of kerala?
 - where is my place?
 - where is my home?
+- who is ranjith
+- who is jibin
+- where is goa
+- where is kattakampal
 
 ## intent:list_departments
 - what all are the departments under central government?
@@ -133,6 +147,8 @@
 - departments under government?
 - what are the departments of government of india?
 - tell me the departments under central government?
+- what are the departments of india?
+- what are the government departments of india?
 - government of india departments?
 - get me departments under central government?
 - get me departments under government?
