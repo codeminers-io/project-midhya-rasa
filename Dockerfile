@@ -47,6 +47,8 @@ RUN mkdir /log
 RUN mkdir duckling
 WORKDIR duckling
 
+RUN stack upgrade
+
 ADD stack.yaml .
 
 RUN stack setup
