@@ -88,3 +88,7 @@
 ## user info
 * user_info
   - utter_user_info
+
+## complaints count
+* complaints_count
+  - action_complaints_count
