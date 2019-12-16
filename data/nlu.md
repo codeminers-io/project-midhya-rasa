@@ -200,53 +200,53 @@
 - tell me about [neifm](organization_code)
 
 ## intent:complaints_count
-- how many complaints [registered](status) [till now](date)
-- how many complaints [registered](status) [until jan 2019](date)
-- how many complaints [registered](status) [until 2019](date)
-- how many complaints [registered](status) [until 1 apr 2019](date)
-- how many complaints [registered](status) [from mar 2000 to jan 2019](date)
-- how many complaints [registered](status) [from june to october](date)
-- how many complaints [registered](status) [from 2001 to 2018](date)
-- how many complaints [resolved](status) [till now](date)
-- how many complaints [resolved](status) [until sep 2019](date)
-- how many complaints [resolved](status) [until 2018](date)
-- how many complaints [resolved](status) [from jul 2002 to dec 2017](date)
-- how many complaints [resolved](status) [from feb to nov](date)
-- how many complaints [resolved](status) [from 2005 to 2007](date)
-- how many complaints [pending](status) [till now](date)
-- how many complaints [pending](status) [until may 2016](date)
-- how many complaints [pending](status) [until may 2015](date)
-- how many complaints [pending](status) [from aug 2017 to sep 2017](date)
-- how many complaints [pending](status) [more than 2 years](date)
-- how many complaints [pending](status) [more than 1 month](date)
-- how many complaints [pending](status) [more than 5 days](date)
-- how many complaints [pending](status) [between 10 to 12 months](date)
-- how many complaints [pending](status) [between 1 to 3 years](date)
-- how many complaints [pending](status) [between 112 to 365 days](date)
-- how many complaints [pending](status) [less than 1 year](date)
-- how many complaints [pending](status) [less than 3 months](date)
-- how many complaints [pending](status) [less than 10 days](date)
+- how many complaints [registered](status) till now
+- how many complaints [registered](status) until jan 2019
+- how many complaints [registered](status) until 2019
+- how many complaints [registered](status) until 1 apr 2019
+- how many complaints [registered](status) from mar 2000 to jan 2019
+- how many complaints [registered](status) from june to october
+- how many complaints [registered](status) from 2001 to 2018
+- how many complaints [resolved](status) till now
+- how many complaints [resolved](status) until sep 2019
+- how many complaints [resolved](status) until 2018
+- how many complaints [resolved](status) from jul 2002 to dec 2017
+- how many complaints [resolved](status) from feb to nov
+- how many complaints [resolved](status) from 2005 to 2007
+- how many complaints [pending](status) till now
+- how many complaints [pending](status) until may 2016
+- how many complaints [pending](status) until may 2015
+- how many complaints [pending](status) from aug 2017 to sep 2017
+- how many complaints [pending](status) more than 2 years
+- how many complaints [pending](status) more than 1 month
+- how many complaints [pending](status) more than 5 days
+- how many complaints [pending](status) between 10 to 12 months
+- how many complaints [pending](status) between 1 to 3 years
+- how many complaints [pending](status) between 112 to 365 days
+- how many complaints [pending](status) less than 1 year
+- how many complaints [pending](status) less than 3 months
+- how many complaints [pending](status) less than 10 days
 - how many complaints [pending](status) under [idbi federal life insurance co. ltd](organization)
-- how many complaints [registered](status) under [drt ahmedabad](organization) [on jan](date)
-- how many complaints [registered](status) under [accountnt generel assam](organization) [on jan 2018](date)
-- how many complaints [registered](status) under [accountnt generel assam](organization) [on 2017](date)
-- how many complaints [registered](status) under [idbi federal life insurance co. ltd](organization) [until jan 2019](date)
-- how many complaints [registered](status) under [joint director cghs ranchi](organization) [until 2000](date)
-- how many complaints [resolved](status) under [nic-arpg cpgrams group](organization) [on jan](date)
-- how many complaints [resolved](status) under [national institute of homoeopathy](organization) [on jan 2018](date)
-- how many complaints [resolved](status) under [joint joint advisor ayurveda](organization) [on 2017](date)
-- how many complaints [resolved](status) under [idbi federal life insurance co. ltd](organization) [until jan 2019](date)
-- how many complaints [resolved](status) under [central council for yoga and naturopathy](organization) [until 2000](date)
-- how many complaints [registered](status) on [jan](date)
-- how many complaints [registered](status) on [jan 2018](date)
-- how many complaints [registered](status) on [2018](date)
-- how many complaints [resolved](status) on [jan](date)
-- how many complaints [resolved](status) on [jan 2018](date)
-- how many complaints [resolved](status) [on 2018](date)
+- how many complaints [registered](status) under [drt ahmedabad](organization) on jan
+- how many complaints [registered](status) under [accountnt generel assam](organization) on jan 2018
+- how many complaints [registered](status) under [accountnt generel assam](organization) on 2017
+- how many complaints [registered](status) under [idbi federal life insurance co. ltd](organization) until jan 2019
+- how many complaints [registered](status) under [joint director cghs ranchi](organization) until 2000
+- how many complaints [resolved](status) under [nic-arpg cpgrams group](organization) on jan
+- how many complaints [resolved](status) under [national institute of homoeopathy](organization) on jan 2018
+- how many complaints [resolved](status) under [joint joint advisor ayurveda](organization) on 2017
+- how many complaints [resolved](status) under [idbi federal life insurance co. ltd](organization) until jan 2019
+- how many complaints [resolved](status) under [central council for yoga and naturopathy](organization) until 2000
+- how many complaints [registered](status) on jan
+- how many complaints [registered](status) on jan 2018
+- how many complaints [registered](status) on 2018
+- how many complaints [resolved](status) on jan
+- how many complaints [resolved](status) on jan 2018
+- how many complaints [resolved](status) on 2018
 
 ## intent:complaint_departments
-- get me [top 5](date) departments with more complaints [registered](status)
-- get me [top 3](date) departments with less complaints [registered](status)
+- get me [top 5] departments with more complaints [registered](status)
+- get me [top 3] departments with less complaints [registered](status)
 
 ## intent:register_complaints
 - register a new complaint
