@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: chmod +777 /usr/lib/python3/dist-packages/ --recursive && rasa run -m models/ --enable-api --log-file out.log -p $PORT --cors "*" --endpoints endpoints.yml & chmod +777 /usr/lib/python3/dist-packages/ --recursive && rasa run actions
+  web: chmod +777 /usr/lib/python3/dist-packages/ --recursive && rasa run -m models/ --enable-api --log-file out.log -p $PORT --cors "*" --endpoints endpoints.yml & chmod +777 /usr/lib/python3/dist-packages/ --recursive && rasa run actions & duckling-example-exe --no-access-log --no-error-log
