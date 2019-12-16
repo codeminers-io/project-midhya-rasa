@@ -25,6 +25,7 @@ from datetime import datetime
 from dateutil import tz
 from rasa_sdk.forms import FormAction
 from typing import Dict, Text, Any, List, Union, Optional
+import json
 
 class ActionListDepartments(Action):
     def name(self) -> Text:
@@ -33,6 +34,8 @@ class ActionListDepartments(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        print(tracker.latest_message['entities'])
 
         con = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
         cur = con.cursor()
@@ -112,9 +115,6 @@ class OrganizationForm(FormAction):
         intent = tracker.latest_message['intent'].get('name')
         value = tracker.get_slot('organization').lower()
 
-        print(intent)
-        print(value)
-
         if intent == 'parent_organization':
             con = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
             cur = con.cursor()
@@ -164,5 +164,62 @@ class OrganizationForm(FormAction):
                 dispatcher.utter_message(template="utter_about_organization", organization_details=resultString)
             else:
                 dispatcher.utter_message(template="utter_organization_not_found", organization=value)
+
+        return []
+
+class ActionComplaintsCount(Action):
+    def name(self) -> Text:
+        return "action_complaints_count"
+        
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        status = next(tracker.get_latest_entity_values("status"), None)
+        organization = next(tracker.get_latest_entity_values("organization"), None)
+        time = next(tracker.get_latest_entity_values("time"), None)
+        duration = next((e for e in tracker.latest_message["entities"] if e['entity'] == 'duration'), None)
+
+        print(duration)
+
+        sql = "SELECT SUM(h.Recetpts), SUM(h.Disposals), SUM(h.Recetpts) - SUM(h.Disposals) FROM receipts_history h INNER JOIN nodal_officer_details n ON h.org_name = n.org_name WHERE 1 = 1"
+
+        if organization != None:
+            sql+= " AND (LOWER(n.org_code) =\'" + organization.lower() + "\' OR LOWER(h.org_name) = \'" + organization.lower() + "\')"
+        elif time != None:
+            if time["from"] != None and time["from"] != None:
+                sql+= " AND ((year::text || LPAD(month::text, 2, '0')::date BETWEEN \'" + time["from"] + "\' AND \'" + time["to"] + "\')"
+            elif time["from"] != None and time["to"] == None:
+                sql+= " AND ((year::text || LPAD(month::text, 2, '0') || \'01\')::timestamp > \'" + time["from"] + "\'::timestamp)"
+            elif time["from"] == None and time["to"] != None:
+                sql+= " AND ((year::text || LPAD(month::text, 2, '0') || \'01\')::timestamp < \'" + time["to"] + "\'::timestamp)"
+        elif duration != None:
+            sql+= " AND ((DATE_PART(\'day\', now()::timestamp - (year::text || LPAD(month::text, 2, \'0\') || '01 00:00:00' )::timestamp) * 24 + DATE_PART(\'hour\',now()::timestamp -  (year::text || LPAD(month::text, 2, \'0\') || '01 00:00:00' )::timestamp)) * 60 + DATE_PART(\'minute\', now()::timestamp - (year::text || LPAD(month::text, 2, \'0\') || '01 00:00:00' )::timestamp)) * 60 + DATE_PART(\'second\', now()::timestamp - (year::text || LPAD(month::text, 2, \'0\') || '01 00:00:00' )::timestamp) > " + str(duration["additional_info"]["normalized"]["value"])
+
+        print(sql)
+
+        con = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
+        cur = con.cursor()
+        cur.execute(sql)
+        results = cur.fetchall()
+
+        if(len(results) != 0):
+            if status != None and status.lower() == 'pending':
+                desc = 'Total Pending: ' + str(results[0][2])
+                dispatcher.utter_message(template="utter_complaints_count", description=desc)
+            elif status != None and status.lower() == 'resolved':
+                desc = 'Total Resolved: ' + str(results[0][1])
+                dispatcher.utter_message(template="utter_complaints_count", description=desc)
+            elif status != None and status.lower() == 'registered':
+                desc = 'Total Receipts: ' + str(results[0][0])
+                dispatcher.utter_message(template="utter_complaints_count", description=desc)
+            else:
+                desc = 'Total Receipts: ' + str(results[0][0])
+                desc = 'Total Resolved: ' + str(results[0][1])
+                desc = 'Total Pending: ' + str(results[0][2])
+                dispatcher.utter_message(template="utter_complaints_count", description=desc)
+            
+        else:
+            dispatcher.utter_message(template="utter_default")
 
         return []
