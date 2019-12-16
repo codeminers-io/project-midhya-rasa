@@ -1,7 +1,21 @@
 # Configuration for Rasa NLU.
 # https://rasa.com/docs/rasa/nlu/components/
 language: en
-pipeline: supervised_embeddings
+pipeline:
+- name: "WhitespaceTokenizer"
+- name: "RegexFeaturizer"
+- name: "CRFEntityExtractor"
+- name: "EntitySynonymMapper"
+- name: "CountVectorsFeaturizer"
+- name: "CountVectorsFeaturizer"
+  analyzer: "char_wb"
+  min_ngram: 1
+  max_ngram: 4
+- name: "EmbeddingIntentClassifier"
+- name: "DucklingHTTPExtractor"
+  url: "http://localhost:8000"
+  dimensions: ["amountofmoney","creditcardnumber","distance","duration","email","numeral","ordinal","phonenumber","quantity","temperature","time","url","volume"]
+  timeout : 60
 
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
