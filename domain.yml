@@ -21,6 +21,7 @@ intents:
   - organization_address
   - bot_likes
   - user_info
+  - complaints_count
 
 actions:
 - utter_greet
@@ -47,12 +48,27 @@ actions:
 - utter_default
 - utter_bot_likes
 - utter_user_info
+- action_complaints_count
+- utter_complaints_count
 
 entities:
   - organization
   - designation
   - organization_code
   - status
+  - amountofmoney
+  - creditcardnumber
+  - distance
+  - duration
+  - email
+  - numeral
+  - ordinal
+  - phonenumber
+  - quantity
+  - temperature
+  - time
+  - url
+  - volume
 
 slots:
   organization:
@@ -145,3 +161,6 @@ templates:
   - text: "Sorry, I don't have any answers for these type of questions."
   - text: "Sorry, I'm not designed to answer these type of questions."
   - text: "Sorry, It's something outside my interest, I don't have any answer for that."
+
+  utter_complaints_count:
+  - text: "Here is the details\n\n{description}"
