@@ -47,7 +47,7 @@ RUN mkdir /log
 RUN mkdir duckling
 WORKDIR duckling
 
-ADD duckling/stack.yaml .
+ADD /duckling/ /duckling/
 
 RUN stack setup
 
