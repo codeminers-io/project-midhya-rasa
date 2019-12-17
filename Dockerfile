@@ -44,19 +44,17 @@ RUN apt-get update -qq && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
 RUN mkdir /log
-RUN mkdir duckling
-WORKDIR duckling
+RUN mkdir d
+WORKDIR d
 
-ADD /duckling/ /duckling/
+ADD /duckling/ /d/
 
 RUN stack setup
-
-ADD /duckling/ /duckling/
 
 # NOTE:`stack build` will use as many cores as are available to build
 # in parallel. However, this can cause OOM issues as the linking step
 # in GHC can be expensive. If the build fails, try specifying the
 # '-j1' flag to force the build to run sequentially.
-RUN stack install -j1
+RUN stack install
 
 EXPOSE 8000
