@@ -47,13 +47,11 @@ RUN mkdir /log
 RUN mkdir duckling
 WORKDIR duckling
 
-RUN stack upgrade
-
-ADD stack.yaml .
+ADD duckling/stack.yaml .
 
 RUN stack setup
 
-ADD . .
+ADD /duckling/ /duckling/
 
 # NOTE:`stack build` will use as many cores as are available to build
 # in parallel. However, this can cause OOM issues as the linking step
