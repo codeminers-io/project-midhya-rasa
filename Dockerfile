@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.2-runtime-ubuntu18.04 AS builder
+FROM nvidia/cuda:10.2-runtime-ubuntu18.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y && \
@@ -20,32 +20,18 @@ RUN apt-get update -y && \
 	python-psycopg2 \
 	nodejs \
 	npm \
+	libpcre3 libpcre3-dev build-essential --fix-missing --no-install-recommends && \
 	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 	;
 
-RUN mkdir /rasa
+RUN mkdir /workdir
 
-WORKDIR /rasa
+RUN mkdir /workdir/log
+RUN mkdir /workdir/d
+WORKDIR /workdir/d
 
-COPY / /rasa/
-
-RUN pip3 install -U pip
-
-RUN pip3 install -r requirements.txt --extra-index-url https://pypi.rasa.com/simple
-
-FROM haskell:8 AS stackbuilder
-
-RUN apt-get update -qq && \
-  apt-get install -qq -y libpcre3 libpcre3-dev build-essential --fix-missing --no-install-recommends && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
-
-RUN mkdir /log
-RUN mkdir d
-WORKDIR d
-
-ADD /duckling/ /d/
+ADD /duckling/ /workdir/d/
 
 RUN stack setup
 
@@ -55,11 +41,13 @@ RUN stack setup
 # '-j1' flag to force the build to run sequentially.
 RUN stack install
 
-FROM nvidia/cuda:10.2-runtime-ubuntu18.04
-WORKDIR /app
+WORKDIR /workdir
 
-COPY --from=builder /rasa .
-COPY --from=stackbuilder /d .
+COPY / /workdir/
+
+RUN pip3 install -U pip
+
+RUN pip3 install -r requirements.txt --extra-index-url https://pypi.rasa.com/simple
 
 EXPOSE 8000
 EXPOSE 5005
