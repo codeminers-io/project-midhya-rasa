@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.2-runtime-ubuntu18.04
+FROM nvidia/cuda:10.2-runtime-ubuntu18.04 AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y && \
@@ -24,19 +24,17 @@ RUN apt-get update -y && \
 	&& rm -rf /var/lib/apt/lists/* \
 	;
 
-RUN mkdir /workdir
+RUN mkdir /rasa
 
-WORKDIR /workdir
+WORKDIR /rasa
 
-COPY / /workdir/
+COPY / /rasa/
 
 RUN pip3 install -U pip
 
 RUN pip3 install -r requirements.txt --extra-index-url https://pypi.rasa.com/simple
 
-EXPOSE 5005
-
-FROM haskell:8
+FROM haskell:8 AS stackbuilder
 
 RUN apt-get update -qq && \
   apt-get install -qq -y libpcre3 libpcre3-dev build-essential --fix-missing --no-install-recommends && \
@@ -57,4 +55,11 @@ RUN stack setup
 # '-j1' flag to force the build to run sequentially.
 RUN stack install
 
+FROM nvidia/cuda:10.2-runtime-ubuntu18.04
+WORKDIR /app
+
+COPY --from=builder /rasa .
+COPY --from=stackbuilder /d .
+
 EXPOSE 8000
+EXPOSE 5005
