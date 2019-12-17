@@ -13,7 +13,7 @@ pipeline:
   max_ngram: 4
 - name: "EmbeddingIntentClassifier"
 - name: "DucklingHTTPExtractor"
-  url: "http://localhost:8000"
+  url: "https://midhya-duckling.herokuapp.com/"
   dimensions: ["amountofmoney","creditcardnumber","distance","duration","email","numeral","ordinal","phonenumber","quantity","temperature","time","url","volume"]
   timeout : 60
 
