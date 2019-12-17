@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.2-runtime-ubuntu18.04
+FROM haskell:8
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y && \
