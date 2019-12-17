@@ -20,7 +20,7 @@ RUN apt-get update -y && \
 	python-psycopg2 \
 	nodejs \
 	npm \
-	libpcre3 libpcre3-dev build-essential --fix-missing --no-install-recommends && \
+	libpcre3 libpcre3-dev build-essential --fix-missing --no-install-recommends \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 	;
