@@ -1,6 +1,7 @@
 resolver: lts-9.10
 
-packages: []
+packages:
+- '.'
 
 extra-deps: []
 
