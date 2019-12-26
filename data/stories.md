@@ -12,6 +12,10 @@
 * bot_challenge
   - utter_iamabot
 
+## bot training
+* bot_training
+  - utter_bot_training
+
 ## bot location
 * bot_location
   - utter_location
@@ -51,6 +55,14 @@
 ## bot time
 * bot_time
   - action_bot_time
+
+## bot grievance
+* bot_grievance
+  - utter_bot_grievance
+
+## bot contact
+* bot_contact
+  - utter_bot_contact
   
 ## list departments
 * list_departments
@@ -92,3 +104,15 @@
 ## complaints count
 * complaints_count
   - action_complaints_count
+
+## register complaint
+* register_complaint
+  - complaint_form
+  - slot{"organization": "esic dispensary"}
+  - slot{"location": "jangpura new delhi"}
+  - slot{"name": "ranjith"}
+  - slot{"mobile": "9633197122"}
+  - slot{"otp": "1234"}
+  - slot{"complaint_confirmation": "yes"}
+  - form{"name": "complaint_form"}
+  - form{"name": null}

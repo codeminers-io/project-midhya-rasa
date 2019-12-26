@@ -26,6 +26,21 @@ from dateutil import tz
 from rasa_sdk.forms import FormAction
 from typing import Dict, Text, Any, List, Union, Optional
 import json
+import random
+from rasa_sdk.events import SlotSet
+
+class ActionDefaultFallback(Action):
+    def name(self) -> Text:
+        return "action_default_fallback"
+        
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+
+        dispatcher.utter_template('utter_default')
+
+        return []
 
 class ActionListDepartments(Action):
     def name(self) -> Text:
@@ -35,8 +50,6 @@ class ActionListDepartments(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        print(tracker.latest_message['entities'])
-
         con = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
         cur = con.cursor()
         cur.execute('SELECT DISTINCT apex_ministry_dept_state FROM nodal_officer_details LIMIT 5')
@@ -93,6 +106,75 @@ class ActionBotTime(Action):
         dispatcher.utter_message(template="utter_bot_time", indiaTime=time)
 
         return []
+
+class ComplaintForm(FormAction):
+    def name(self) -> Text:
+
+        return "complaint_form"
+
+    @staticmethod
+    def required_slots(tracker: Tracker) -> List[Text]:
+
+        return ["organization","location","name","mobile","otp","complaint_confirmation"]
+
+    def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
+    
+        return {
+            "organization": [self.from_entity(entity="organization"), self.from_text()],
+            "location": [self.from_entity(entity="location"), self.from_text()],
+            "name": [self.from_entity(entity="name"), self.from_text()],
+            "mobile": [self.from_entity(entity="mobile"), self.from_text()],
+            "otp": [self.from_entity(entity="otp"), self.from_text()],
+            "complaint_confirmation": [self.from_entity(entity="complaint_confirmation"), self.from_text()]
+        }
+
+    def submit(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict]:
+    
+        intent = tracker.latest_message['intent'].get('name')
+        organization = tracker.get_slot('organization').lower()
+        location = tracker.get_slot('location').lower()
+        name = tracker.get_slot('name').lower()
+        mobile = tracker.get_slot('mobile').lower()
+        otp = tracker.get_slot('otp').lower()
+        confirmation = tracker.get_slot('complaint_confirmation').lower()
+
+        if confirmation == 'yes' or confirmation == 'ok':
+
+            SlotSet("organization", None)
+            SlotSet("location", None)
+            SlotSet("name", None)
+            SlotSet("mobile", None)
+            SlotSet("otp", None)
+            SlotSet("complaint_confirmation", None)
+
+            value='AYUSH/E/' + str(datetime.now().year) + '/' + str(random.randrange(10000, 99999, 3))
+
+            dispatcher.utter_message(template="utter_complaint_registered", complaint_number=value)
+
+        return []
+
+    def validate_organization(
+        self,
+        value: Text,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> Dict[Text, Any]:
+
+        # data should move to database
+        organization_dict = {
+            'esic dispensary':'Ayush',
+            'esic':'Ayush',
+        }
+
+        if value.lower() in organization_dict.keys():
+            # validation succeeded, set the value of the "cuisine" slot to value
+            return {"organization": organization_dict[value.lower()]}
+        else:
+            dispatcher.utter_message(template="utter_organization_not_found")
+            # validation failed, set this slot to None, meaning the
+            # user will be asked for the slot again
+            return {"organization": None}
 
 class OrganizationForm(FormAction):
     def name(self) -> Text:
@@ -180,8 +262,6 @@ class ActionComplaintsCount(Action):
         time = next(tracker.get_latest_entity_values("time"), None)
         duration = next((e for e in tracker.latest_message["entities"] if e['entity'] == 'duration'), None)
 
-        print(duration)
-
         sql = "SELECT SUM(h.Recetpts), SUM(h.Disposals), SUM(h.Recetpts) - SUM(h.Disposals) FROM receipts_history h INNER JOIN nodal_officer_details n ON h.org_name = n.org_name WHERE 1 = 1"
 
         if organization != None:
@@ -195,8 +275,6 @@ class ActionComplaintsCount(Action):
                 sql+= " AND ((year::text || LPAD(month::text, 2, '0') || \'01\')::timestamp < \'" + time["to"] + "\'::timestamp)"
         elif duration != None:
             sql+= " AND ((DATE_PART(\'day\', now()::timestamp - (year::text || LPAD(month::text, 2, \'0\') || '01 00:00:00' )::timestamp) * 24 + DATE_PART(\'hour\',now()::timestamp -  (year::text || LPAD(month::text, 2, \'0\') || '01 00:00:00' )::timestamp)) * 60 + DATE_PART(\'minute\', now()::timestamp - (year::text || LPAD(month::text, 2, \'0\') || '01 00:00:00' )::timestamp)) * 60 + DATE_PART(\'second\', now()::timestamp - (year::text || LPAD(month::text, 2, \'0\') || '01 00:00:00' )::timestamp) > " + str(duration["additional_info"]["normalized"]["value"])
-
-        print(sql)
 
         con = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
         cur = con.cursor()

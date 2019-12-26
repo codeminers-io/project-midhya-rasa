@@ -17,6 +17,16 @@
 - see you later
 - see you
 - thank you
+- come home
+- nice to meet you
+- nice to meet you midhya
+- i do not need an assistant
+- i don't need an assistant
+- i do not need you
+- i don't need you
+- i do not need midhya
+- i don't need midhya
+- go to hell you stupid
 
 ## intent:affirm
 - yes
@@ -52,6 +62,8 @@
 - i'm fine
 - i am fine
 - i am good
+- well done
+- good job
 
 ## intent:mood_unhappy
 - sad
@@ -65,6 +77,10 @@
 - extremely sad
 - so sad
 - shit
+- i am tired
+- i will kill u
+- stupid
+- fuck you
 
 ## intent:bot_challenge
 - are you a bot?
@@ -80,16 +96,41 @@
 - are you man
 - are you girl
 
+## intent:bot_contact
+- contact me
+- how can i contact your developer?
+- who is your developer?
+- who made you?
+- who developed you?
+- who is your father?
+- who is your mother?
+- who is your parent?
+- call ranjith
+- call jibin
+- contact your developer
+- email of your developer
+- email id of your developer
+
+## intent:bot_training
+- are you trained?
+- trained?
+- machine learning?
+- studied?
+- are you studied?
+- what is your qualification?
+
 ## intent:bot_location
 - where do you live?
 - where is your place?
 - are you indian?
+- nationality?
 
 ## intent:bot_age
 - how old are you?
 - what is your age?
 - age?
 - what is your date of birth?
+- dob
 
 ## intent:bot_asl
 - asl?
@@ -109,6 +150,10 @@
 - how can you help me?
 - how does you work?
 - what do you offer?
+- ready?
+- then, what do you understand?
+- what do you understand?
+- what do you know?
 
 ## intent:bot_state
 - how are you?
@@ -120,6 +165,7 @@
 - what are your hobbies?
 - hobbies?
 - what do you like?
+- what are you interested in?
 
 ## intent:bot_likes
 - do you like me?
@@ -140,6 +186,23 @@
 - who is jibin
 - where is goa
 - where is kattakampal
+- start
+- end
+- had lunch?
+- had bath?
+- had sex?
+- sex
+- where can i apply for birth certificate?
+- death certificate?
+- marriage certificate?
+- passport?
+
+## intent:bot_grievance
+- what is grievance?
+- grievance?
+- can you tell me what is grievance?
+- what is grievance means?
+- grievance?
 
 ## intent:list_departments
 - what all are the departments under central government?
@@ -245,10 +308,10 @@
 - how many complaints [resolved](status) on 2018
 
 ## intent:complaint_departments
-- get me [top 5] departments with more complaints [registered](status)
-- get me [top 3] departments with less complaints [registered](status)
+- get me top 5 departments with more complaints [registered](status)
+- get me top 3 departments with less complaints [registered](status)
 
-## intent:register_complaints
+## intent:register_complaint
 - register a new complaint
 - can you register a complaint
 - could you please register a complaint
@@ -256,7 +319,35 @@
 - how to register a complaint
 - i want to register a complaint
 - i am having an issue
+- please do something so that we can save our time please
 - i have an issue
+- please do something
+- requested to look into the issue and do the needful
+- how can i complaint about somebody?
+- the [esic dispensary](organization) in [jangpura new delhi](location) is not working properly
+- the [ESIC dispensary](organization) in [jangpura new delhi](location) is not working properly
+- [ksrtc](organization) in [kerala](location) is not working properly
+- [KSRTC](organization) in [kerala](location) is not working properly
+- the [doctors](actor) not treated to [patients](actor)
+- [bhagat chandra](organization) [hospital](actor) is denying for some tests
+- writing on the behalf of [bindu soni](person) and her husband [Vijay Kumar](person)
+- it is not covered under [ayushman bharat](actor) scheme
+- suggest what to do next
+- [Patient](actor) Name: [bindu devi](person)
+- [Husband](actor) Name: [vijay kumar](person)
+- [Hospital](actor) Name: [tata memorial hospital parel mumbai](organization)
+- [hospital](actor) [case number](identifier): [csv12345](identifier_value)
+- [year of birth](dob) : [25/06/1990](dob_value)
+- [dob](dob) : [25 jun 1990](dob_value)
+- [gender](gender): [female](gender_value)
+- [sex](gender): [male](gender_value)
+- [ayusman bharat id](identifier):  [bb4k2z1tu](identifier_value)
+- complaint agains [aiims](organization) staff
+- kindly investigate below mentioned [reference no](identifier) for further enquiry
+- my self [ashish kumar jain](person) from [uttar pradesh](place)
+- my self [ranjith](person) from [thrissur](place)
+- he goes along with her wife to [bareilley](place) for [treatment](actor) in [clara swain mission hospital](organization) [civil lines bareilley uttar pradesh](place)
+- his wife having card for [ayushman](actor) at the time of admission [hospital](actor) and there [ayushman](actor) staff denied to take admission
 
 ## intent:followup_complaints
 - what is the status of my complaint

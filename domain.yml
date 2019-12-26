@@ -22,6 +22,10 @@ intents:
   - bot_likes
   - user_info
   - complaints_count
+  - bot_grievance
+  - bot_contact
+  - bot_training
+  - register_complaint
 
 actions:
 - utter_greet
@@ -40,6 +44,12 @@ actions:
 - action_child_organizations
 - action_organization_address
 - utter_ask_organization
+- utter_ask_location
+- utter_ask_name
+- utter_ask_mobile
+- utter_ask_otp
+- complaint_confirmation
+- utter_complaint_registered
 - utter_organization_not_found
 - action_list_departments
 - action_bot_date
@@ -50,9 +60,18 @@ actions:
 - utter_user_info
 - action_complaints_count
 - utter_complaints_count
+- utter_bot_grievance
+- utter_bot_contact
+- utter_bot_training
 
 entities:
   - organization
+  - location
+  - name
+  - mobile
+  - otp
+  - complaint_confirmation
+  - actor
   - designation
   - organization_code
   - status
@@ -73,9 +92,20 @@ entities:
 slots:
   organization:
     type: text
+  location:
+    type: text
+  name:
+    type: text
+  mobile:
+    type: text
+  otp:
+    type: text
+  complaint_confirmation:
+    type: text
 
 forms:
   - organization_form
+  - complaint_form
 
 templates:
   utter_greet:
@@ -117,7 +147,16 @@ templates:
 
   utter_help:
   - text: "I am still under development, hope you can see some list soon."
+
+  utter_bot_training:
+  - text: "Yes, I am trained to answer your questions and assist you for a smoother grievance submittion."
   
+  utter_bot_grievance:
+  - text: "A grievance is a formal complaint that is raised by a citizen towards any of the organization/person within the country."
+
+  utter_bot_contact:
+  - text: "I am developed by Gov. of India you can always contact my developers and raise concerns in below address\n\nAddress:\nGov. Of India\n...\nhelp@midhya.com"
+
   utter_state:
   - text: "I'm good, thanks!"
   - text: "I'm great! Thanks for asking."
@@ -132,6 +171,24 @@ templates:
 
   utter_ask_organization:
   - text: "What is the organization name ?"
+
+  utter_ask_location:
+  - text: "Where is the location ?"
+
+  utter_ask_name:
+  - text: "What is your name ?"
+
+  utter_ask_mobile:
+  - text: "Let me know your mobile no. ?"
+
+  utter_ask_otp:
+  - text: "Please enter your OTP for verification ?"
+
+  utter_ask_complaint_confirmation:
+  - text: "Do you want me to register a complain with below details ?\n\nOrganization: {organization}\nLocation: {location}\nName: {name}"
+
+  utter_complaint_registered:
+  - text: "Complaint registeration successful. Please find your request id {complaint_number}"    
 
   utter_organization_not_found:
   - text: "Sorry, I don't have any details about the organization {organization}."
